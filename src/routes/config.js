@@ -1,6 +1,5 @@
-import Browse from "../components/Browse";
-import Login from "../components/Login";
-import Signup from "../components/Signup";
+import Browse from "../pages/Browse";
+import Login from "../pages/Login";
 
 const config = [
   {
@@ -10,10 +9,6 @@ const config = [
   {
     path: "/browse",
     element: <Browse />,
-  },
-  {
-    path: "/signup",
-    element: <Signup />,
   },
 ];
 

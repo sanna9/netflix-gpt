@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
-import Body from "./components/Body";
 import config from "./routes/config";
+import Body from "./pages/Body";
 
 function App() {
   return (

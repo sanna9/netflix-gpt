@@ -75,8 +75,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
     Create app
     configured Tailwind css
     Header
-    Login
-    Signin
+    Routing
+    Login form
+    Signin form
+    form validation
 
 ### Features
 Signup/Login page
@@ -97,3 +99,8 @@ NetflixGPT
 # setup react-router:
 npm i -D react-router-dom
 
+# commands to deploy firebase
+npm install -g firebase-tools
+firebase login
+firebase init, then select hosting
+firebase deploy
