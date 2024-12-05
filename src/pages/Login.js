@@ -2,30 +2,86 @@ import React, { useRef, useState } from "react";
 import Header from "./Header";
 import Button from "../components/Button";
 import { validateForm } from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
-  const [userNameError, setUserNameError] = useState(null);
 
+  const navigate = useNavigate();
   const toggleSignInForm = () => {
     setIsSignIn(!isSignIn);
   };
 
-  const userName = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
+  const name = useRef(null);
 
   const handleButton = () => {
     const errorMessage = validateForm(
-      userName?.current?.value || "",
       email?.current?.value || "",
       password?.current?.value || ""
     );
-    setEmailError(errorMessage.email || null);
-    setPasswordError(errorMessage.password || null);
-    setUserNameError(errorMessage.userName || null);
+    setEmailError(errorMessage.email);
+    setPasswordError(errorMessage.password);
+
+    if (errorMessage.email || errorMessage.password) {
+      return;
+    }
+
+    if (!isSignIn) {
+      createUserWithEmailAndPassword(
+        auth,
+        email?.current?.value,
+        password?.current?.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+
+          updateProfile(user, {
+            displayName: name?.current?.value,
+            photoURL: "https://example.com/jane-q-user/profile.jpg",
+          })
+            .then(() => {
+              // Refresh the current user data
+              return user.reload();
+            })
+            .then(() => {
+              navigate("/browse");
+            })
+            .catch((error) => {
+              console.log("Error updating profile:", error.message);
+            });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setEmailError(errorCode + errorMessage);
+        });
+    } else {
+      signInWithEmailAndPassword(
+        auth,
+        email?.current?.value,
+        password?.current?.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+
+          navigate("/browse");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setEmailError("Invalid Credentials");
+        });
+    }
   };
 
   return (
@@ -46,12 +102,11 @@ const Login = () => {
         {!isSignIn ? (
           <>
             <input
-              ref={userName}
+              ref={name}
               type="text"
               placeholder="Full Name"
               className="p-4 my-2 w-full bg-transparent border rounded"
             />
-            <p className="text-red-500">{userNameError}</p>
           </>
         ) : (
           ""

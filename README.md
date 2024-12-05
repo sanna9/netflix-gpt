@@ -70,7 +70,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
-
+sanna9aulakh@gmail.com
+Hrhk@4321
 # Project Steps
     Create app
     configured Tailwind css
@@ -79,6 +80,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
     Login form
     Signin form
     form validation
+    useRef hook
+    firebase setup
+    deployment
+    create signup in firebase
+    implement signin user API
+    created redux stor wwith userSlice
+    fetch tmdb movies api
+    
 
 ### Features
 Signup/Login page
@@ -104,3 +113,7 @@ npm install -g firebase-tools
 firebase login
 firebase init, then select hosting
 firebase deploy
+
+#redux toolkit
+npm i -D @reduxjs/toolkit
+npm i react-redux
