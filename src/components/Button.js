@@ -2,24 +2,21 @@ import React from "react";
 
 const Button = ({
   label,
-  backgroundColor,
-  borderColor,
+
   labelClassName,
   onClick,
   buttonClassName,
+  btnIcon,
 }) => {
-  const buttonStyle = {
-    backgroundColor: backgroundColor,
-    borderColor: borderColor,
-  };
-
   return (
     <button
-      style={buttonStyle}
       onClick={onClick}
-      className={`custom-button cursor ${buttonClassName}`}
+      className={`custom-button cursor px-4 py-2 rounded shadow-lg  ${buttonClassName}`}
     >
-      <span className={labelClassName}>{label}</span>
+      <span className={`flex items-center ${labelClassName}`}>
+        {btnIcon}
+        {label}
+      </span>
     </button>
   );
 };

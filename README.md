@@ -87,6 +87,16 @@ Hrhk@4321
     implement signin user API
     created redux stor wwith userSlice
     fetch tmdb movies api
+    Bug fix:doing the cleanup event of unsubscribe to onAuthStatechange callback when header unmounts
+    bugfix: display user name, profile pic
+    bugfix:  redirect if user is not loggedin ,redirect to login page and vice versa
+    reguster for TMDB API and get access token and then go to documentatiom an Get data from NOW PLaying movie list API
+    custom hook for now Playing Movies
+    create movieSlice
+    Update store with movies data
+    fetch data for trailer video and update store with trailer video data
+    EMbedded with youtube video and make it autoplay and mute
+    
     
 
 ### Features

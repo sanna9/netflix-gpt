@@ -8,14 +8,13 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+import { LOGIN_BG, USER_IMG } from "../constants/constants";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
 
-  const navigate = useNavigate();
   const toggleSignInForm = () => {
     setIsSignIn(!isSignIn);
   };
@@ -47,15 +46,13 @@ const Login = () => {
 
           updateProfile(user, {
             displayName: name?.current?.value,
-            photoURL: "https://example.com/jane-q-user/profile.jpg",
+            photoURL: USER_IMG,
           })
             .then(() => {
-              // Refresh the current user data
+              // Refresh the current user data so can reflect in state in meantime
               return user.reload();
             })
-            .then(() => {
-              navigate("/browse");
-            })
+
             .catch((error) => {
               console.log("Error updating profile:", error.message);
             });
@@ -73,13 +70,11 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setEmailError("Invalid Credentials");
+          setEmailError("Invalid Credentials", errorCode + errorMessage);
         });
     }
   };
@@ -89,7 +84,7 @@ const Login = () => {
       <Header />
 
       <div className="absolute">
-        <img src="https://assets.nflxext.com/ffe/siteui/vlv3/2bcf01ee-7ef6-4930-b0d5-c6863853c461/web/CA-en-20241125-TRIFECTA-perspective_ddb53a3c-a0df-4db6-85f4-b00321e76f8a_large.jpg"></img>
+        <img src={LOGIN_BG} alt="logo" />
       </div>
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       <form
@@ -130,6 +125,7 @@ const Login = () => {
           buttonClassName="p-2 bg-red-700 w-full mt-4 rounded"
           onClick={handleButton}
           label={isSignIn ? "Sign In" : "Sign Up"}
+          labelClassName="justify-center"
         />
         <p className="pt-2" onClick={toggleSignInForm}>
           {isSignIn
