@@ -96,6 +96,14 @@ Hrhk@4321
     Update store with movies data
     fetch data for trailer video and update store with trailer video data
     EMbedded with youtube video and make it autoplay and mute
+    body container
+    built movie list
+    built movie card
+    TMDB image CDN url added constant
+    Tailwind css usage
+    custum hook for usePopularMovies
+    GPT search feature
+
     
     
 

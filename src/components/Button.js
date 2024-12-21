@@ -2,7 +2,6 @@ import React from "react";
 
 const Button = ({
   label,
-
   labelClassName,
   onClick,
   buttonClassName,

@@ -7,7 +7,13 @@ const HeroContainer = () => {
   const movies = useSelector((store) => store?.movies?.nowPlayingMovies);
   if (movies === null) return;
 
-  const mainMovie = movies[1];
+  const mainMovie = movies && movies.length > 0 ? movies[0] : null;
+
+  if (!mainMovie) {
+    return <div>Loading...</div>; // Showing a loading state, will add shimmer UI later
+  }
+  
+  
   const { original_title, overview, id } = mainMovie;
 
   return (
