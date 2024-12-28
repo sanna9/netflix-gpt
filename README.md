@@ -135,3 +135,15 @@ firebase deploy
 #redux toolkit
 npm i -D @reduxjs/toolkit
 npm i react-redux
+
+
+
+----------------
+next TODO
+on Detail page: similar movies, video, ratings,
+on home page: recommendations
+add movie:
+delete movie
+edit movie
+for search text use debouc eof throtlling
+if movie_poste ri snot present add the dummy movie poster withname on it

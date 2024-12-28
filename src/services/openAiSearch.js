@@ -9,7 +9,12 @@ export const openAiSearch = async (searchText) => {
       messages: [{ role: "user", content: gptQuery }],
     });
 
-    return aiResults.choices[0]?.message?.content.split(",") || [];
+    const rawResponse = aiResults.choices[0]?.message?.content || [];
+
+    return rawResponse
+      .split("\n") // Split by lines
+      .map((line) => line.replace(/^\d+[\.\)]?\s*/, "").trim()) // Remove numbering
+      .filter((movie) => movie); // Filter out empty strings
   } catch (error) {
     console.error("OpenAI API Error:", error);
     throw error;

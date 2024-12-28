@@ -9,7 +9,7 @@ const SearchBar = ({
   onSearchTextChange,
 }) => {
   return (
-    <div className="pt-40 absolute w-full">
+    <div className="pt-40 relative w-full">
       <form
         className="flex p-4 w-6/12 bg-black m-auto"
         onSubmit={(e) => e.preventDefault()} // Prevent form submission default behavior
