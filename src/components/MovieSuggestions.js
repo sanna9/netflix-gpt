@@ -7,7 +7,7 @@ const MovieSuggestions = () => {
 
   return (
     searchedmovies && (
-      <div className="bg-black bg-opacity-70 pb-6">
+      <div className="bg-black bg-opacity-70 mt-20 pb-6 px-8">
         <MovieList title="Recommended Movies" movies={searchedmovies} />
       </div>
     )

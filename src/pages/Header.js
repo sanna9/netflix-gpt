@@ -20,6 +20,8 @@ const Header = () => {
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   const langKey = useSelector((store) => store.config.lang) || "en";
   const t = useTranslation(langKey, showGptSearch);
+
+
   const handleSignOut = useCallback(async () => {
     try {
       await signOut(auth);
@@ -77,16 +79,25 @@ const Header = () => {
               options={SUPPORTED_LANG}
               onChange={handleLanguageChange}
               placeholder="Select Language"
-              className="m-2 bg-gray-900 text-white"
+              className="m-2 bg-white  p-2 rounded"
             />
           )}
           <Button
             label={showGptSearch ? t("home") : t("gptSearch")}
-            buttonClassName="bg-purple-800"
+            buttonClassName="bg-red-700 text-white"
             onClick={handleGptSearch}
           />
-          <img className="w-20" src={user?.photoURL} alt="user-icon" />
-          <Dropdown items={dropdownItems} buttonLabel={t("settings")} />
+
+          <Dropdown
+            items={dropdownItems}
+            trigger={
+              <img
+                className="w-10 rounded-3xl cursor-pointer"
+                src={user?.photoURL}
+                alt="user-icon"
+              />
+            }
+          />
         </div>
       )}
     </div>

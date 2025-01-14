@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./Header";
-import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
+import nowPlayingMoviesApi from "../services/nowPlayingMoviesApi";
 import HeroContainer from "../components/HeroContainer";
 import BodyContainer from "../components/BodyContainer";
-import usePopularMovies from "../hooks/usePopularMovies";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import GptSearch from "../components/GptSearch";
+import { addNowPlayingMovies, addPopularMovies } from "../store/moviesSlice";
+import popularMoviesApi from "../services/popularMoviesApi";
 
 const Browse = () => {
-  useNowPlayingMovies();
-  usePopularMovies();
+  const dispatch = useDispatch();
+  const nowPlayingMovies = useSelector((store) => store.nowPlayingMovies);
+  const popularMovies = useSelector((store) => store.popularMovies);
   const showGptSearchView = useSelector((store) => store?.gpt?.showGptSearch);
+
+  useEffect(() => {
+    !nowPlayingMovies &&
+      nowPlayingMoviesApi()
+        .then((movies) => dispatch(addNowPlayingMovies(movies)))
+        .catch((error) =>
+          console.error("Error fetching now playing movies in Browse:", error)
+        );
+
+    !popularMovies &&
+      popularMoviesApi()
+        .then((movies) => dispatch(addPopularMovies(movies)))
+        .catch((error) =>
+          console.error("Error fetching now playing movies in Browse:", error)
+        );
+  }, [nowPlayingMovies, popularMovies]);
 
   return (
     <div>

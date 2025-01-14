@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "./Button";
 
-const Dropdown = ({ items, buttonLabel }) => {
+const Dropdown = ({ items, trigger }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -10,14 +10,18 @@ const Dropdown = ({ items, buttonLabel }) => {
 
   return (
     <div className="relative">
-      <Button
+      {/* <Button
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         type="button"
         label={buttonLabel}
         onClick={toggleDropdown}
-      />
+      /> */}
+
+      <div onClick={toggleDropdown} className="inline-block">
+        {typeof trigger === "function" ? trigger() : trigger}
+      </div>
 
       {isOpen && (
         <div
