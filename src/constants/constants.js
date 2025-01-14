@@ -4,11 +4,29 @@ export const USER_IMG =
   "https://lh3.googleusercontent.com/ogw/AF2bZyjT-A-pzTL3oD-GOquCnoJikFRu1ksUiBgL_N_uM8NkNys=s32-c-mo";
 export const LOGIN_BG =
   "https://assets.nflxext.com/ffe/siteui/vlv3/2bcf01ee-7ef6-4930-b0d5-c6863853c461/web/CA-en-20241125-TRIFECTA-perspective_ddb53a3c-a0df-4db6-85f4-b00321e76f8a_large.jpg";
+export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
+
 export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwY2JjMzdkOTk4YmI5ZjM2YThkNjU5ZDZmZWEyNDA2NCIsIm5iZiI6MTcyMDgwOTk1OC4xNjIsInN1YiI6IjY2OTE3OWU2NGQ5ZmZlMjJmMzQzZGNkMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.i9lwUK_vUTeTG_zt6xCHUaAqZD3W_EJMWg44kZsAE2A",
+    Authorization: "Bearer " + process.env.REACT_APP_TMDB_KEY,
   },
 };
+
+export const SUPPORTED_LANG = [
+  {
+    value: "en",
+    label: "English",
+  },
+  {
+    value: "hi",
+    label: "Hindi",
+  },
+  {
+    value: "es",
+    label: "Spanish",
+  },
+];
+
+export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
