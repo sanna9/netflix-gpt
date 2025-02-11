@@ -147,3 +147,5 @@ delete movie
 edit movie
 for search text use debouc eof throtlling
 if movie_poste ri snot present add the dummy movie poster withname on it
+recently visited
+https://dribbble.com/shots/18407647-Dune-concept-shorts-Promo-Page

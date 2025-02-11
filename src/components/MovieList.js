@@ -3,9 +3,11 @@ import MovieCard from "./MovieCard";
 import { useDispatch, useSelector } from "react-redux";
 import { addDetailMovie } from "../store/moviesSlice";
 import { detailMovieApi } from "../services/detailMovieApi";
+import { useNavigate } from "react-router-dom";
 
 const MovieList = ({ title, movies }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { movieDetails } = useSelector((state) => state.movies);
   const flattenedMovies = movies?.flat?.(Infinity) || movies || []; // Handle linear and nested arrays
 
@@ -14,6 +16,7 @@ const MovieList = ({ title, movies }) => {
       const movieDetails = await detailMovieApi(movieId);
 
       dispatch(addDetailMovie(movieDetails));
+      navigate(`/movie-detail/${movieId}`);
     } catch (error) {
       console.error(error);
     }
