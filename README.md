@@ -149,3 +149,33 @@ for search text use debouc eof throtlling
 if movie_poste ri snot present add the dummy movie poster withname on it
 recently visited
 https://dribbble.com/shots/18407647-Dune-concept-shorts-Promo-Page
+move top header to sidebar and keep 3 options on top with search bar sleek design
+
+-----
+need to focus for learning:
+jaavscript concept
+optimization
+lazy loading
+css:grid,tailwind,mdh, design and css lib
+
+
+
+---
+daily things to work:
+
+react project
+css implementation
+javascript programs and interview practise
+system design videos
+
+
+check business idea and look for canava
+check busines ideas from facebook and othe rplaces and post on market place
+post for website development on market place
+
+read book 20 pages
+do surya namaskar 10 rounds,jumping and cross feet touch, walk
+meditation 2 times a day for 5-20mins
+chaupasi sahib paath, kleem paath,hanuman ji chalisa and ram naam jaap
+GRAOHIC DESIGNING FOR logo,brochure,business cards
+

@@ -7,7 +7,7 @@ const VideoTitle = ({ title, overview }) => {
   return (
     <div className="px-24 w-full absolute pt-56 bg-gradient-to-r from-black aspect-video">
       <h1 className="text-4xl font-bold pb-4 text-white">{title}</h1>
-      <p className="pb-6 w-1/4 text-white">{overview} </p>
+      <p className="mb-6 w-1/4 text-white line-clamp-4">{overview} </p>
       <div className="gap-2.5 flex">
         <Button
           btnIcon={<FaPlay aria-label="Play Video" />}

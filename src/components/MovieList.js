@@ -33,6 +33,7 @@ const MovieList = ({ title, movies }) => {
               {flattenedMovies?.map((movie) => (
                 <MovieCard
                   key={movie?.id}
+                  j
                   posterPath={movie?.poster_path}
                   onClick={() => getDetailMovie(movie?.id)}
                 />

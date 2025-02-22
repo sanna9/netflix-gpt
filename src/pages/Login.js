@@ -84,7 +84,7 @@ const Login = () => {
       <Header />
 
       <div className="absolute">
-        <img src={LOGIN_BG} alt="logo" />
+        <img src={LOGIN_BG} alt="logo" className="w-dvw h-screen" />
       </div>
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       <form
