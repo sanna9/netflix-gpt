@@ -13,7 +13,7 @@ const TopTrailerListing = ({ movieData, onMovieClick }) => {
           <li key={movie?.id} onClick={() => onMovieClick(movie)}>
             <img
               alt="movie-card"
-              className="w-20 h-14"
+              className="w-20 h-14 rounded"
               src={IMG_CDN_URL + movie?.poster_path}
             />
           </li>

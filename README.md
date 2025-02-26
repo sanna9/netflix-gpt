@@ -150,7 +150,8 @@ if movie_poste ri snot present add the dummy movie poster withname on it
 recently visited
 https://dribbble.com/shots/18407647-Dune-concept-shorts-Promo-Page
 move top header to sidebar and keep 3 options on top with search bar sleek design
-
+add categories of movie types on the top of th headbar: https://dribbble.com/shots/21646539-Cuby-Movie-Movie-Series-Cinema-Web-Design
+detail page: https://dribbble.com/shots/3997058-Netflix-Movie-Details
 -----
 need to focus for learning:
 jaavscript concept
