@@ -7,6 +7,7 @@ import { useTranslation } from "../hooks/useTranslation";
 import { addGptMovieList, clearGptMovieList } from "../store/gptSlice";
 import { movieSearchApi } from "../services/movieSearchApi";
 import { openAiSearch } from "../services/openAiSearch";
+import Layout from "./Layout";
 
 const GptSearch = () => {
   const langKey = useSelector((store) => store.config.lang);
@@ -47,22 +48,24 @@ const GptSearch = () => {
   }, []);
 
   return (
-    <div>
-      <div className="fixed -z-10">
-        <img src={LOGIN_BG} alt="logo" className="h-screen w-screen" />
+    <Layout>
+      <div>
+        <div className="fixed -z-10">
+          <img src={LOGIN_BG} alt="logo" className="h-screen w-screen" />
+        </div>
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="relative">
+          <SearchBar
+            placeholder={t("gptSearchPlaceholder")}
+            btnLabel={t("search")}
+            searchText={searchText}
+            onSearchTextChange={setSearchText}
+            onClick={handleGptSearch}
+          />
+          <MovieSuggestions />
+        </div>
       </div>
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-      <div className="relative">
-        <SearchBar
-          placeholder={t("gptSearchPlaceholder")}
-          btnLabel={t("search")}
-          searchText={searchText}
-          onSearchTextChange={setSearchText}
-          onClick={handleGptSearch}
-        />
-        <MovieSuggestions />
-      </div>
-    </div>
+    </Layout>
   );
 };
 

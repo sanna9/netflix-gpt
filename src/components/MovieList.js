@@ -9,14 +9,14 @@ const MovieList = ({ title, movies }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { movieDetails } = useSelector((state) => state.movies);
-  const flattenedMovies = movies?.flat?.(Infinity) || movies || []; // Handle linear and nested arrays
+  const flattenedMovies = movies?.flat?.(Infinity) || movies || [];
 
   const getDetailMovie = async (movieId) => {
     try {
       const movieDetails = await detailMovieApi(movieId);
 
       dispatch(addDetailMovie(movieDetails));
-      navigate(`/movie-detail/${movieId}`);
+      navigate(`/movie/${movieId}`);
     } catch (error) {
       console.error(error);
     }

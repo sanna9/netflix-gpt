@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Header from "./Header";
 import nowPlayingMoviesApi from "../services/nowPlayingMoviesApi";
 import HeroContainer from "../components/HeroContainer";
 import BodyContainer from "../components/BodyContainer";
@@ -7,12 +6,19 @@ import { useDispatch, useSelector } from "react-redux";
 import GptSearch from "../components/GptSearch";
 import { addNowPlayingMovies, addPopularMovies } from "../store/moviesSlice";
 import popularMoviesApi from "../services/popularMoviesApi";
+import Layout from "../components/Layout";
+import { useNavigate } from "react-router-dom";
 
 const Browse = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const nowPlayingMovies = useSelector((store) => store.nowPlayingMovies);
   const popularMovies = useSelector((store) => store.popularMovies);
   const showGptSearchView = useSelector((store) => store?.gpt?.showGptSearch);
+
+  const handleGptSearch = () => {
+    navigate("/gpt-search");
+  };
 
   useEffect(() => {
     !nowPlayingMovies &&
@@ -31,11 +37,10 @@ const Browse = () => {
   }, [nowPlayingMovies, popularMovies]);
 
   return (
-    <div>
-      <Header />
+    <Layout>
       {showGptSearchView ? (
         <div className="">
-          <GptSearch />
+          <GptSearch onClick={handleGptSearch()} />
         </div>
       ) : (
         <>
@@ -43,7 +48,7 @@ const Browse = () => {
           <BodyContainer />
         </>
       )}
-    </div>
+    </Layout>
   );
 };
 

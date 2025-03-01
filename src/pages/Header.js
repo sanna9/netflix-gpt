@@ -12,15 +12,16 @@ import Select from "../components/Select";
 import { changeLanguage } from "../store/configSlice";
 
 import { useTranslation } from "../hooks/useTranslation";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const location = useLocation();
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   const langKey = useSelector((store) => store.config.lang) || "en";
   const t = useTranslation(langKey, showGptSearch);
-
 
   const handleSignOut = useCallback(async () => {
     try {
@@ -46,7 +47,9 @@ const Header = () => {
       if (user) {
         const { uid, email, displayName, photoURL } = user;
         dispatch(addUser({ uid, email, displayName, photoURL }));
-        navigate("/browse");
+        if (window.location.pathname === "/") {
+          navigate("/browse");
+        }
       } else {
         dispatch(removeUser());
         navigate("/");
@@ -56,9 +59,13 @@ const Header = () => {
     return () => unsubscribe();
   }, [dispatch, navigate]);
 
-  const handleGptSearch = useCallback(() => {
-    dispatch(toggleGptSearchView());
-  }, [dispatch]);
+  const handleButtonClick = useCallback(() => {
+    if (location.pathname === "/gpt-search") {
+      navigate("/browse");
+    } else {
+      navigate("/gpt-search");
+    }
+  }, [navigate, location.pathname]);
 
   const handleLanguageChange = useCallback(
     (lang) => {
@@ -70,7 +77,9 @@ const Header = () => {
 
   return (
     <div className="absolute px-8 py-2 z-10 flex justify-between w-full">
-      <img className="w-44" src={LOGO} alt="logo" />
+      <a href="/browse">
+        <img className="w-44" src={LOGO} alt="logo" />
+      </a>
 
       {user && (
         <div className="flex items-center space-x-4">
@@ -83,9 +92,11 @@ const Header = () => {
             />
           )}
           <Button
-            label={showGptSearch ? t("home") : t("gptSearch")}
+            label={
+              location.pathname === "/gpt-search" ? t("home") : t("gptSearch")
+            }
             buttonClassName="bg-red-700 text-white"
-            onClick={handleGptSearch}
+            onClick={handleButtonClick}
           />
 
           <Dropdown

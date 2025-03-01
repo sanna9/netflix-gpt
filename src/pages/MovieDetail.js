@@ -5,6 +5,7 @@ import MovieBanner from "../components/MovieBanner";
 import MovieInfo from "../components/MovieInfo";
 import { detailMovieApi } from "../services/detailMovieApi";
 import { addDetailMovie } from "../store/moviesSlice";
+import Layout from "../components/Layout";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -22,17 +23,19 @@ const MovieDetail = () => {
   };
   useEffect(() => {
     getDetailMovie(id);
-  }, [id, dispatch]);
+  }, [id]);
 
   return (
-    <div className="grid grid-cols-3 gap-4">
-      <div className="col-span-1 bg-lightblue text-center p-4">
-        <MovieBanner posterImg={movieDetailInfo?.poster_path} />
+    <Layout bodyClassName="bg-black h-screen">
+      <div className="grid grid-cols-3 gap-4 pt-24 w-3/4 mx-auto">
+        <div className="col-span-1 bg-lightblue text-center p-4">
+          <MovieBanner posterImg={movieDetailInfo?.poster_path} />
+        </div>
+        <div className="col-span-2 bg-lightcoral bg-lightcoral text-center p-4 flex items-center justify-center">
+          <MovieInfo movieDetailInfo={movieDetailInfo} />
+        </div>
       </div>
-      <div className="col-span-2 bg-lightcoral text-center p-4">
-        <MovieInfo movieDetailInfo={movieDetailInfo} />
-      </div>
-    </div>
+    </Layout>
   );
 };
 
