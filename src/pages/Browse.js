@@ -14,11 +14,6 @@ const Browse = () => {
   const navigate = useNavigate();
   const nowPlayingMovies = useSelector((store) => store.nowPlayingMovies);
   const popularMovies = useSelector((store) => store.popularMovies);
-  const showGptSearchView = useSelector((store) => store?.gpt?.showGptSearch);
-
-  const handleGptSearch = () => {
-    navigate("/gpt-search");
-  };
 
   useEffect(() => {
     !nowPlayingMovies &&
@@ -38,16 +33,8 @@ const Browse = () => {
 
   return (
     <Layout>
-      {showGptSearchView ? (
-        <div className="">
-          <GptSearch onClick={handleGptSearch()} />
-        </div>
-      ) : (
-        <>
-          <HeroContainer />
-          <BodyContainer />
-        </>
-      )}
+      <HeroContainer />
+      <BodyContainer />
     </Layout>
   );
 };

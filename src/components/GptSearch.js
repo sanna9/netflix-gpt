@@ -4,7 +4,11 @@ import SearchBar from "./SearchBar";
 import { LOGIN_BG } from "../constants/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "../hooks/useTranslation";
-import { addGptMovieList, clearGptMovieList } from "../store/gptSlice";
+import {
+  addGptMovieList,
+  clearGptMovieList,
+  toggleGptSearchView,
+} from "../store/gptSlice";
 import { movieSearchApi } from "../services/movieSearchApi";
 import { openAiSearch } from "../services/openAiSearch";
 import Layout from "./Layout";
@@ -45,7 +49,11 @@ const GptSearch = () => {
 
   useEffect(() => {
     dispatch(clearGptMovieList());
-  }, []);
+
+    return () => {
+      dispatch(toggleGptSearchView()); // Cleanup on unmount
+    };
+  }, [dispatch]);
 
   return (
     <Layout>

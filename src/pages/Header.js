@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { addUser, removeUser } from "../store/userSlice";
 import { LOGO, SUPPORTED_LANG } from "../constants/constants";
 import Button from "../components/Button";
-import { toggleGptSearchView } from "../store/gptSlice";
 import Select from "../components/Select";
 import { changeLanguage } from "../store/configSlice";
 
@@ -98,7 +97,6 @@ const Header = () => {
             buttonClassName="bg-red-700 text-white"
             onClick={handleButtonClick}
           />
-
           <Dropdown
             items={dropdownItems}
             trigger={
